@@ -58,8 +58,8 @@ if __name__ == "__main__" :
 						eyeright = np.copy(facecolor[y:y+h, x+w/2:x+w])
 						
 						# 確認用画像
-						#cv2.rectangle(facepaste, (x, y), (x+w, y+h), (255, 255, 0), 1)
-						#cv2.line(facepaste, (x + w/2, y), (x + w/2, y+h), (255, 255, 0), 1)
+						cv2.rectangle(facepaste, (x, y), (x+w, y+h), (255, 255, 0), 1)
+						cv2.line(facepaste, (x + w/2, y), (x + w/2, y+h), (255, 255, 0), 1)
 						# 両名のエッジの画像を作る
 						eyeleft = cv2.Canny(eyeleft, 100, 200)
 						eyeright = cv2.Canny(eyeright, 100, 200)
@@ -170,12 +170,12 @@ if __name__ == "__main__" :
 				skin_mask = cv2.inRange(mouse_hsv, skin_min, skin_max)
 				# ゴマ塩ノイズ除去
 				skin_mask = cv2.medianBlur(skin_mask, 7)
-				skin_mask = cv2.Canny(skin_mask, 50, 200)
+				skin_mask = cv2.Canny(skin_mask, 100, 200)
 				
 				# 鼻の特徴点を取る
 				# 鼻の特徴点描画（左目）
 				nose_left = (1000, 1000)	# 鼻左端
-				nose_right = (0, 0)		 	# 鼻右端
+				nose_right = (0, 0)			# 鼻右端
 				nose_up = (1000, 1000)		# 鼻上
 				nose_down = (0, 0)			# 鼻下
 				for y in range(nose.shape[0]) :
